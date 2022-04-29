@@ -1232,8 +1232,12 @@ void mixTable() {
       servo[3] = (SERVODIR(3,-1) * rcCommand[PITCH]) + (SERVODIR(3,2) * rcCommand[ROLL]);
       servo[4] = (SERVODIR(4,1) * rcCommand[PITCH]) + (SERVODIR(4,2) * rcCommand[ROLL]);
     } else {                  // use sensors to correct (gyro only or gyro+acc according to aux1/aux2 configuration
+                                                   /*With Rudder Mix*/
       servo[3] = (SERVODIR(3,-1) * axisPID[PITCH])   + (SERVODIR(3,2) * axisPID[ROLL])+(SERVODIR(3,2) * axisPID[YAW]);
       servo[4] = (SERVODIR(4,1) * axisPID[PITCH])   + (SERVODIR(4,2) * axisPID[ROLL])+(SERVODIR(4,2) * axisPID[YAW]);
+                                                   /*No Rudder Mix*/
+      //servo[3] = (SERVODIR(3,-1) * axisPID[PITCH])   + (SERVODIR(3,2) * axisPID[ROLL]);
+      //servo[4] = (SERVODIR(4,1) * axisPID[PITCH])   + (SERVODIR(4,2) * axisPID[ROLL]);
     }
     servo[3] += get_middle(3);
     servo[4] += get_middle(4);
